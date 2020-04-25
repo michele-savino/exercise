@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Album list</title>
+</head>
+<body>
+
+<h1>Albums</h1>
+
+<ul>
+    {% for album in albums %}
+    <li> <a href="{% url 'album' album.id %}">{{album.Title}}</a>  </li>
+    {% empty %}
+    <li>There is no album yet. </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
