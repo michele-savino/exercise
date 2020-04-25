@@ -8,11 +8,23 @@
 
 <h1>Albums</h1>
 
+<form action="{% url 'research' %}" target="_self" method="get">
+    <label for="searchbar">Filter albums</label><br>
+    <select id="searchbar" name="what">
+    <option value="Album">Album</option>
+    <option value="Artist">Artist</option>
+    <option value="Track">Track</option>
+  </select>
+  <input type="text" id="searchbar" name="query">
+    <input type="submit" value="Submit">
+</form>
+
+
 <ul>
     {% for album in albums %}
-    <li> <a href="{% url 'album' album.id %}">{{album.Title}}</a>  </li>
+        <li><a href="{% url 'album' album.id %}">{{ album.Title }}</a></li>
     {% empty %}
-    <li>There is no album yet. </li>
+        <li>There is no album yet.</li>
     {% endfor %}
 </ul>
 

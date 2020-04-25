@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search results</title>
+</head>
+<body>
+
+<h1>Results</h1>
+{{ what }}
+{% if what == "Album" %}
+    {% for album in albums %}
+        <li><a href="{% url 'album' album.id %}">{{ album.Title }}</a></li>
+    {% empty %}
+        <li>No match.</li>
+    {% endfor %}
+{% elif what == "Artist" %}
+    {% for artist in artists %}
+        <li>{{ artist.Name }}</li>
+    {% empty %}
+        <li>No match.</li>
+    {% endfor %}
+{% elif what == "Track" %}
+    {% for track in tracks %}
+        <li>{{ track.Name }}</li>
+    {% empty %}
+        <li>No match.</li>
+    {% endfor %}
+{% endif %}
+
+
+</body>
+</html>
