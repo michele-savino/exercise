@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 
-from disks.models import Album, Artist, Track
-from disks.forms import SearchForm
+from .models import Album, Artist, Track
+from .forms import SearchForm, NewAlbumForm
 
 
 def album_list(request):
@@ -26,4 +26,17 @@ def research(request):
         tracks = Track.objects.filter(Name__contains=query)
         artists = Artist.objects.filter(Name__contains=query)
 
-    return render(request, 'disks/search_results.html', locals(), {'form': form})
+    return render(request, 'disks/search_results.html', locals())
+
+
+def new_album(request):
+    saved = False
+    form = NewAlbumForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        saved = True
+
+    return render(request, 'disks/new_album.html', {
+            'form': form,
+            'saved': saved
+        })
