@@ -3,18 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ album.Title }}</title>
+
+    <style>
+        #albums {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #albums td, #albums th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #albums tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #albums tr:hover {background-color: #ddd;}
+
+        #albums th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
-<h1>{{ album.Title }}</h1>
+<h2>{{ album.Title }}</h2>
 
-<ul>
+<h3>Artist: {{ album.artist }}</h3>
+
+<table id="albums">
+    <tr>
+        <th>Name</th>
+        <th>Composer</th>
+        <th>Length</th>
+        <th>Unit price</th>
+    </tr>
     {% for track in tracks %}
-    <li> {{track.Name}} </li>
+        <tr>
+        <td>{{ track.Name }}</td>
+        <td>{{ track.Composer }}</td>
+        <td>{{ track.Milliseconds }} ms</td>
+        <td>{{ track.UnitPrice }} $</td>
+        </tr>
     {% empty %}
-    <li>Empty album </li>
+        <tr><td colspan="4">This album is empty album</td></tr>
     {% endfor %}
-</ul>
+</table>
+
 
 </body>
 </html>
